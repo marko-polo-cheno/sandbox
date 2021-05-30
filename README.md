@@ -2,4 +2,4 @@
 
 playing with sand...  
 and juypter  
-sql
+sq
