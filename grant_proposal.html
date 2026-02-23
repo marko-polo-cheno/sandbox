@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grant Proposal: Vendor-Neutral Multimodal Neurodiagnostic Data Platform for Drug-Resistant Epilepsy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+  :root { --primary: #1a365d; --accent: #2b6cb0; --text: #1a202c; --muted: #4a5568; --light: #f7fafc; --border: #e2e8f0; --warn: #c53030; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Source Serif 4', Georgia, serif; font-size: 11.5pt; line-height: 1.65; color: var(--text); max-width: 8.5in; margin: 0 auto; padding: 0.75in 1in; background: #fff; }
+  h1, h2, h3, h4 { font-family: 'Inter', 'Helvetica Neue', sans-serif; color: var(--primary); margin-top: 1.5em; margin-bottom: 0.5em; line-height: 1.25; }
+  h1 { font-size: 18pt; border-bottom: 3px solid var(--accent); padding-bottom: 8px; margin-top: 0; }
+  h2 { font-size: 14pt; border-bottom: 1.5px solid var(--border); padding-bottom: 4px; }
+  h3 { font-size: 12pt; color: var(--accent); }
+  h4 { font-size: 11pt; font-weight: 600; }
+  p { margin-bottom: 0.7em; text-align: justify; }
+  sup { font-size: 0.7em; color: var(--accent); }
+  a { color: var(--accent); text-decoration: none; }
+  .cover { text-align: center; padding: 2em 0 1.5em; border-bottom: 3px double var(--primary); margin-bottom: 1.5em; }
+  .cover h1 { border: none; font-size: 20pt; }
+  .cover .subtitle { font-size: 12pt; color: var(--muted); margin: 0.5em 0; font-family: 'Inter', sans-serif; }
+  .cover .meta { font-size: 10pt; color: var(--muted); margin-top: 1em; }
+  .section-label { font-family: 'Inter', sans-serif; font-size: 9pt; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0; font-weight: 600; }
+  table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 10pt; }
+  th, td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; }
+  th { background: var(--primary); color: #fff; font-family: 'Inter', sans-serif; font-size: 9.5pt; font-weight: 600; }
+  tr:nth-child(even) { background: var(--light); }
+  .highlight-box { background: #ebf8ff; border-left: 4px solid var(--accent); padding: 12px 16px; margin: 1em 0; font-size: 10.5pt; }
+  .warn-box { background: #fff5f5; border-left: 4px solid var(--warn); padding: 12px 16px; margin: 1em 0; font-size: 10.5pt; }
+  .figure { margin: 1.2em 0; text-align: center; }
+  .figure svg { max-width: 100%; height: auto; }
+  .figure-caption { font-family: 'Inter', sans-serif; font-size: 9.5pt; color: var(--muted); margin-top: 6px; font-style: italic; }
+  .page-break { page-break-before: always; break-before: page; }
+  .toc { font-family: 'Inter', sans-serif; font-size: 10pt; }
+  .toc ul { list-style: none; padding-left: 0; }
+  .toc li { padding: 3px 0; border-bottom: 1px dotted var(--border); }
+  .toc li.l2 { padding-left: 1.5em; }
+  .ref-list { font-size: 9.5pt; }
+  .ref-list p { text-indent: -2em; padding-left: 2em; margin-bottom: 0.3em; }
+  .timeline { display: grid; grid-template-columns: 100px 1fr; gap: 0; font-size: 10pt; margin: 1em 0; }
+  .timeline .week { font-family: 'Inter', sans-serif; font-weight: 600; color: var(--accent); padding: 8px; border-right: 3px solid var(--accent); }
+  .timeline .tasks { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  .col-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
+  @media print {
+    body { padding: 0.5in 0.75in; font-size: 11pt; }
+    .page-break { page-break-before: always; }
+    h2 { page-break-after: avoid; }
+    table, .figure { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== COVER ==================== -->
+<div class="cover">
+  <p class="section-label">Grant Proposal</p>
+  <h1>Vendor-Neutral Multimodal Neurodiagnostic Data Platform for Drug-Resistant Epilepsy</h1>
+  <p class="subtitle">A Fit-for-Purpose Architecture Bridging DICOM, openEHR, and FHIR for Presurgical Epilepsy Evaluation</p>
+  <p class="meta">February 2026 &nbsp;|&nbsp; Prepared for NRC IRAP Accelerated Review</p>
+</div>
+
+<!-- ==================== TABLE OF CONTENTS ==================== -->
+<div class="toc">
+<h3 style="margin-top:0.5em;">Contents</h3>
+<ul>
+  <li><strong>1. Executive Summary</strong> ……………… 1</li>
+  <li><strong>2. Research and Technical Plan</strong> ……………… 2</li>
+  <li class="l2">2.1 Background of the Discovery</li>
+  <li class="l2">2.2 Summary of the Relevant Literature</li>
+  <li class="l2">2.3 Advantages and Disadvantages</li>
+  <li class="l2">2.4 Research Questions</li>
+  <li class="l2">2.5 Research and Methodologies</li>
+  <li class="l2">2.6 Health Data Standards and Communication Protocols</li>
+  <li class="l2">2.7 Timelines and Milestones</li>
+  <li><strong>3. Implementation Plan</strong> ……………… 12</li>
+  <li class="l2">3.1 Regulatory Requirements</li>
+  <li class="l2">3.2 Security and Privacy Protection</li>
+  <li class="l2">3.3 Intellectual Property and Freedom to Operate</li>
+  <li class="l2">3.4 Relevant Patents</li>
+  <li class="l2">3.5 Market</li>
+  <li class="l2">3.6 Commercialization Timelines</li>
+  <li class="l2">3.7 Impact</li>
+  <li><strong>4. Appendix</strong> ……………… 14</li>
+  <li class="l2">A. References</li>
+  <li class="l2">B. System Architecture Diagram</li>
+  <li class="l2">C. Data Flow Diagram</li>
+  <li class="l2">D. Terminology Mapping Table</li>
+  <li class="l2">E. Consent Workflow Diagram</li>
+  <li class="l2">F. Sample Dynamic Consent Form</li>
+</ul>
+</div>
+
+<!-- ==================== 1. EXECUTIVE SUMMARY ==================== -->
+<div class="page-break"></div>
+<p class="section-label">Section 1</p>
+<h1>Executive Summary</h1>
+
+<h3>Description of the Discovery</h3>
+<p>Drug-resistant epilepsy (DRE) affects roughly one in three epilepsy patients — over 1.1 million people in North America alone.<sup>[1]</sup> These patients require complex evaluations in specialized Epilepsy Monitoring Units (EMUs), where doctors record days of continuous brain-wave video (video-EEG), brain scans (MRI, PET, SPECT), and, for some, data from surgically implanted brain stimulators. The problem is that each of these data types is trapped in a separate, proprietary computer system that cannot communicate with the others. Doctors must manually piece together information across five or more disconnected systems for each patient, a process that contributes to a median delay of <strong>16.7 years</strong> from diagnosis to potentially life-saving surgery.<sup>[2]</sup></p>
+
+<p>Our invention is a <strong>vendor-neutral, cloud-based data platform</strong> that breaks down these silos. Using a "Fit-for-Purpose" architecture that combines three complementary health data standards — DICOM for medical images and EEG waveforms, openEHR for deep clinical data storage, and HL7 FHIR for interoperable data exchange — the platform ingests data from all major EEG vendors (Natus, Nihon Kohden, Persyst), imaging systems, and neuromodulation devices (NeuroPace RNS, Medtronic DBS, LivaNova VNS) into a single, unified patient timeline. It compresses multi-day video-EEG recordings using H.265/HEVC encoding (reducing storage by 50% over current methods) and presents the complete clinical picture through a web-based viewer accessible to the entire surgical planning team.<sup>[3]</sup></p>
+
+<h3>Description of the Business Opportunity</h3>
+<p>No commercial product currently unifies video-EEG, brain imaging, and neuromodulation data across vendor boundaries.<sup>[4]</sup> The target market includes approximately 250 Level 4 epilepsy centers in the US and 20 comprehensive programs in Canada, each spending $35,000–$40,000 per EMU admission with 50,000–60,000 annual admissions nationally.<sup>[5]</sup> The global EEG market is valued at $1.3–$1.7 billion (2024) with 5–10% annual growth.<sup>[6]</sup> Operating as a Software-as-a-Service (SaaS) platform priced at $40,000–$100,000 per center annually, the core North American addressable market for EMU data management is $15–$65 million, with expansion into ambulatory EEG, neuromodulation clinics, and pharmaceutical research partnerships. The platform initially launches as a Medical Device Data System (MDDS) — a non-device classification under both US and Canadian regulation — avoiding costly FDA 510(k) clearance while building the data infrastructure necessary for future AI-powered diagnostic modules.<sup>[7]</sup></p>
+
+<h3>Justification for Grant Funding</h3>
+<p>Grant funding is critical to de-risk the 2-month prototype phase by funding development of the core Extraction-Transformation-Linking (ETL) pipelines that normalize proprietary vendor data into open standards. The commercial risk is low: there are no competitors in this specific niche, the clinical need is documented across multiple peer-reviewed publications, and the regulatory pathway is clear. A non-dilutive funding stack of <strong>$100,000–$245,000</strong> is achievable in Year 1 through NRC IRAP ($30K–$50K via Accelerated Review), SR&ED tax credits ($35K–$65K retroactive), and academic partnerships through Mitacs and NSERC Alliance grants.<sup>[8]</sup> The prototype directly addresses the most common reason cited by Canadian neurologists for epilepsy surgery underutilization: <strong>inadequate healthcare resources</strong>, reported by 75% of surveyed neurologists.<sup>[9]</sup> Every year of delayed surgery exposes patients to a 3.7–9.0 per 1,000 risk of sudden unexpected death in epilepsy (SUDEP) — a risk that surgery reduces three-fold.<sup>[10]</sup></p>
+
+<!-- ==================== 2. RESEARCH AND TECHNICAL PLAN ==================== -->
+<div class="page-break"></div>
+<p class="section-label">Section 2</p>
+<h1>Research and Technical Plan</h1>
+
+<h2>2.1 Background of the Discovery</h2>
+
+<p>The diagnostic workup for drug-resistant epilepsy is among the most data-intensive processes in clinical medicine. A single 5-day EMU admission generates 500 GB to 2+ TB of combined data: 72–120 hours of continuous video-EEG (multi-channel waveforms at 256–2,048 Hz sampling with synchronized dual-camera 1080p video), structural and functional neuroimaging (MRI, fMRI, PET, SPECT, MEG), neuropsychological assessments, and clinical histories spanning years to decades.<sup>[11]</sup> Reviewing this data requires 3–5 hours of epileptologist time per admission — a staggering burden given that Canada has only approximately 854 neurologists total, with a "strong risk of shortage" projected through 2033.<sup>[12]</sup></p>
+
+<p>The fundamental problem is <strong>vendor-driven data fragmentation</strong>. EEG data is locked in proprietary formats: Nihon Kohden's .EEG, Natus's binary format, Compumedics ProFusion, and Cadwell's Easy III, each requiring vendor-specific review software.<sup>[13]</sup> Neuromodulation device data is entirely siloed — NeuroPace's Patient Data Management System (PDMS) stores electrocorticographic recordings in a proprietary cloud accessible only through NeuroPace portals; Medtronic's Percept PC stores local field potentials on-device with no remote access; LivaNova's VNS data is accessible only during in-office programming visits.<sup>[14]</sup> Brain imaging lives in PACS systems that cannot display EEG waveforms, and EEG systems cannot display imaging. No existing platform bridges these silos.</p>
+
+<p>This fragmentation directly contributes to the catastrophic surgical referral delay. In Canada, the median delay from epilepsy diagnosis to surgery is 16.7 years, with rural patients in Saskatchewan waiting a median of 18.2 years.<sup>[2]</sup> Only 1.2% of Ontario's medically intractable epilepsy patients underwent surgery within 2 years between 2001 and 2010.<sup>[15]</sup> The province had only 19 permanent EMU beds (6 pediatric, 13 adult) as of a 2012 expert panel review, which recommended expansion to 50.<sup>[16]</sup> Seven of Canada's thirteen provinces and territories have <strong>zero</strong> EMU capacity.<sup>[17]</sup></p>
+
+<p>Internationally, no existing software product solves this problem. Persyst, the most widely deployed EEG analysis software (used at 97 of the top 100 US neurology hospitals), supports approximately 70 input formats but outputs only to its own viewer — it does not integrate neuromodulation data or manage the complete presurgical workflow.<sup>[4]</sup> The only academic prototype approaching unification is INTUITION (University of Illinois Chicago, 2023), which integrates EHR, neuroimaging, and EEG for epilepsy surgery patients at a single center, but it is not a deployable commercial platform.<sup>[18]</sup></p>
+
+<h2>2.2 Summary of the Relevant Literature</h2>
+
+<p>The literature supporting this platform spans five domains: clinical workflow burden, informatics standards, AI-assisted diagnostics, chronotherapy, and health record architecture.</p>
+
+<p><strong>Clinical workflow and data burden.</strong> Sahoo et al. (2015) described the "Three V challenges" of epilepsy data — volume, velocity, and variety — noting that existing neuroinformatics tools "have limited capability and do not scale."<sup>[19]</sup> Quraishi and Hirsch (2025) documented how long-term ambulatory intracranial EEG from neurostimulators (RNS, DBS) is "beginning to transform epilepsy care" but generates massive data volumes, identifying subclinical seizures vastly outnumbering patient-reported events and revealing circadian and multiday seizure cycles that inform treatment.<sup>[20]</sup> Thomas and Jobst (2015) detailed the ongoing clinical burden of NeuroPace RNS device interrogation, ECoG pattern review, and stimulation parameter adjustment, with the device achieving approximately 50% seizure reduction at 2 years.<sup>[21]</sup> The ASET (American Society of EEG Technologists) position statement confirmed that technologists must edit and consolidate EEG recordings every 2–3 hours to manage data volume, and vendor-specific review systems create persistent workflow bottlenecks.<sup>[22]</sup></p>
+
+<p><strong>Epilepsy surgery efficacy and underutilization.</strong> Wiebe et al.'s landmark randomized controlled trial (NEJM, 2001) demonstrated 58% seizure freedom with surgery versus 8% with medical management (p&lt;0.001).<sup>[23]</sup> The ERSET trial (Engel et al., JAMA, 2012) showed 73% seizure freedom with early surgery versus 0% with continued medical therapy in mesial temporal lobe epilepsy.<sup>[24]</sup> Yet Engel (2018) estimated that fewer than 1% of eligible DRE patients undergo timely surgery.<sup>[25]</sup> Rheims et al. (Epilepsia, 2022) quantified that epilepsy surgery reduces SUDEP risk three-fold: 2.1 per 1,000 patient-years in operated versus 6.6 in non-operated patients (OR 0.32, 95% CI 0.19–0.56).<sup>[10]</sup></p>
+
+<p><strong>Informatics standards for epilepsy.</strong> DICOM Supplement 217 (2020) established the first neurophysiology waveform standard within DICOM, defining Information Object Definitions for routine scalp EEG with standardized electrode naming and annotation contexts.<sup>[26]</sup> Supplement 239 (2024) added Waveform Annotation Structured Reports enabling multi-reviewer seizure annotation,<sup>[27]</sup> and Supplement 236 (2025) encoded montage and filter settings as Waveform Presentation State objects.<sup>[28]</sup> Critical gaps remain: no IODs exist for long-term monitoring EEG, intracranial EEG, video-EEG synchronization, or high-density EEG — representing a standards-based market opportunity.<sup>[26]</sup> The Epilepsy and Seizure Ontology (EpSO), developed at Case Western Reserve University, provides OWL2-based formal encoding of seizure semiology, epilepsy syndromes, and anatomical localization, with demonstrated improvements in diagnostic accuracy.<sup>[29]</sup></p>
+
+<p><strong>Problem-oriented medical records and health record architecture.</strong> Lawrence Weed's Problem-Oriented Medical Record (POMR) framework — problem list, SOAP notes, structured database, and linked plans — maps directly to epilepsy care, where the problem list captures each seizure type and comorbidity, the Objective component records EEG and imaging findings, and the Assessment synthesizes concordance for surgical planning.<sup>[30]</sup> Cimino's twelve desiderata for controlled medical vocabularies (1998) provide the evaluation framework for terminology selection: SNOMED CT satisfies the most desiderata (concept orientation, polyhierarchy, formal definitions, nonsemantic identifiers) but has critical gaps in epilepsy-specific concepts like high-frequency oscillations and seizure onset patterns.<sup>[31]</sup> ISO 18308 defines requirements for EHR architectures including longitudinal records, multimedia data types, audit trails, and consent management — all directly applicable to the platform.<sup>[32]</sup></p>
+
+<p><strong>Chronotherapy and adaptive neurostimulation.</strong> Circadian rhythms profoundly influence epileptic networks. Baud et al. (2018, Nature Communications) demonstrated multidien (multi-day) seizure cycles using chronic intracranial EEG from RNS devices.<sup>[33]</sup> Adjusting neurostimulation parameters based on time-of-day and anti-seizure medication pharmacokinetics represents a future application of the longitudinal data the platform would aggregate — a secondary innovation path requiring the data infrastructure proposed here as a prerequisite.<sup>[34]</sup></p>
+
+<h2>2.3 Advantages and Disadvantages</h2>
+
+<h3>Advantages</h3>
+<p><strong>True vendor neutrality.</strong> By ingesting data from all major EEG systems (Natus, Nihon Kohden, Persyst, Compumedics, Cadwell), imaging systems (any DICOM-compliant PACS), and neuromodulation devices, the platform eliminates the vendor lock-in that currently fragments epilepsy care. Hospitals can select best-of-breed equipment without data compatibility concerns.<sup>[4]</sup></p>
+
+<p><strong>Standards-based persistence with the "Fit-for-Purpose" architecture.</strong> Using openEHR's two-level modeling paradigm for long-term clinical data storage and FHIR for interoperable exchange creates a future-proof architecture where clinical knowledge evolves independently of software — new EEG archetype definitions or seizure classification updates deploy without code changes.<sup>[35]</sup></p>
+
+<p><strong>Dramatic compression of review burden.</strong> Unifying the patient timeline eliminates the manual data aggregation that currently consumes 30–60 minutes per multidisciplinary conference case. H.265/HEVC video compression reduces storage requirements by 25–50% over H.264 while maintaining diagnostic quality.<sup>[36]</sup></p>
+
+<p><strong>Early-mover advantage in DICOM neurophysiology.</strong> The 2020–2025 release of DICOM Supplements 217, 239, and 236 creates a narrow implementation window. No commercial platform has yet implemented these standards for clinical EEG-to-PACS integration. The first clinical implementation (WIGEV Epilepsy Center, Vienna, 2023) validated feasibility but remains a single-center research effort.<sup>[37]</sup></p>
+
+<h3>Disadvantages</h3>
+<p><strong>Legacy system integration complexity.</strong> Proprietary EEG formats are undocumented and vary by vendor version, requiring reverse-engineering or vendor partnership for accurate conversion. EDF+, the most common open format, is limited to 16-bit resolution and lacks metadata for intracranial electrode coordinates.<sup>[38]</sup></p>
+
+<p><strong>Data volume and cost.</strong> Multi-day video-EEG generates 30+ GB per day; cloud storage and bandwidth for even a single Level 4 center with 3–4 EMU beds would require 15–60 TB annual storage. While tiered storage (hot/warm/cold) mitigates cost, this remains a significant infrastructure expense.<sup>[11]</sup></p>
+
+<p><strong>Hospital procurement friction.</strong> Sales cycles to hospital IT departments average 9–24 months with approximately 9 stakeholders per purchasing decision (CIO, CMIO, department chair, IT security, compliance, finance, procurement, clinical end-users).<sup>[39]</sup></p>
+
+<p><strong>Regulatory complexity for future AI features.</strong> Any signal processing or automated interpretation (seizure detection, spike detection, artifact removal) immediately exits the MDDS exclusion and enters FDA 510(k) / Health Canada Class II–III regulation, with dense patent thickets from Ceribell and Persyst.<sup>[7]</sup></p>
+
+<h2>2.4 Research Questions</h2>
+
+<p>The following scientific and technical questions must be resolved to advance the platform toward commercialization:</p>
+
+<p><strong>RQ1:</strong> Can proprietary, legacy EEG data formats (Nihon Kohden .EEG, Natus binary, Compumedics ProFusion) be accurately and losslessly converted into standardized DICOM Supplement 217 neurophysiology waveform objects, preserving all channel metadata, annotations, and temporal synchronization?</p>
+
+<p><strong>RQ2:</strong> What H.265/HEVC compression parameters (quantization parameter, GOP structure, profile/level) achieve optimal compression of multi-day synchronized video-EEG for streaming over standard hospital networks (1 Gbps) without degrading the facial semiology and behavioral observations essential for seizure classification?</p>
+
+<p><strong>RQ3:</strong> Can the "Fit-for-Purpose" multi-standard architecture (openEHR persistence + FHIR exchange + DICOM waveforms/imaging) reduce manual data aggregation time by ≥80% during multidisciplinary epilepsy surgical conferences compared to current vendor-siloed workflows?</p>
+
+<p><strong>RQ4:</strong> What openEHR archetype definitions are required to capture the complete presurgical epilepsy evaluation dataset — including seizure semiology, interictal/ictal EEG findings, electrode coordinates, stimulation mapping results, neuropsychological scores, and ILAE 2017 classification data — and how do these archetypes map to FHIR resources for exchange?</p>
+
+<h2>2.5 Research and Methodologies</h2>
+
+<h3>Hypothesis</h3>
+<p>Implementing a Fit-for-Purpose multi-standard EMR stack using openEHR archetypes for clinical data persistence, FHIR R4 resources for interoperable exchange, and DICOM Supplement 217/239/236 for waveform and imaging data will reduce the time clinicians spend aggregating multimodal neurodiagnostic data for presurgical epilepsy conferences by at least 80%, while achieving lossless fidelity in format conversion as validated by round-trip comparison of waveform amplitude, timing, and annotation data.</p>
+
+<h3>Experimental Plan</h3>
+
+<p><strong>Phase 1 — ETL Pipeline Development (Weeks 1–4).</strong> We will develop agentic AI-assisted ETL (Extraction-Transformation-Linking) pipelines to ingest the three most prevalent proprietary EEG formats in Canadian epilepsy centers: Nihon Kohden (.EEG/.21E), Natus/Xltek (.erd/.eeg), and EDF+. Each pipeline will: (a) parse the proprietary binary format to extract channel data, sampling rates, electrode labels, annotations, and event markers; (b) normalize to an intermediate representation conforming to the openEHR EEG observation archetype; (c) emit DICOM Supplement 217 Routine Scalp EEG IODs for PACS integration and FHIR Observation resources for EHR interoperability. Validation will compare source and converted waveforms using mean absolute error (MAE &lt; 0.1 µV), cross-correlation (r &gt; 0.999), and annotation timestamp alignment (±1 sample). Sample datasets will be obtained from publicly available EEG repositories (TUH EEG Corpus, CHB-MIT) and, with ethics approval, from a partnering Canadian epilepsy center.</p>
+
+<p><strong>Phase 2 — Video Compression and Streaming (Weeks 3–6).</strong> We will evaluate H.265/HEVC encoding against H.264/AVC baseline for multi-day video-EEG using the FFmpeg x265 encoder. Test parameters: QP values 18–35 across Main and Main10 profiles, GOP sizes of 30–120 frames, at 1080p 30fps input. Metrics: (a) compression ratio versus storage baseline; (b) structural similarity index (SSIM ≥ 0.95 required); (c) clinical validation by an epileptologist reviewing 10 seizure events at each compression level to confirm preservation of facial semiology (head version, ictal grimacing, perioral automatisms, eye deviation). Adaptive bitrate streaming (HLS) will be implemented for browser-based review with target latency &lt;3 seconds on 100 Mbps hospital networks.</p>
+
+<p><strong>Phase 3 — FHIR/openEHR Integration Layer (Weeks 5–8).</strong> We will implement a SMART on FHIR application using EHR Launch workflow (OAuth 2.0 authorization, scopes: <code>patient/Observation.rs</code>, <code>patient/DiagnosticReport.rs</code>, <code>patient/ImagingStudy.rs</code>) for integration with Epic and Cerner/Oracle Health test environments. The openEHR persistence layer will use an open-source CDR (EHRBase or Better Platform) with custom-authored archetypes for: EEG recording observation, seizure event evaluation, electrode placement cluster, and neurostimulator device data. The FHIR Consent resource will manage granular patient permissions with recursive provision structures for research data sharing. A POMR-based clinical interface will present the unified patient timeline organized by problem list, with SOAP-structured progress notes linked to specific EEG epochs and imaging findings.</p>
+
+<p><strong>Expertise.</strong> The founding team combines health informatics expertise in FHIR, DICOM, and openEHR with clinical domain knowledge from academic epilepsy center collaboration. The Mitacs internship component will engage a graduate student in biomedical informatics or computer science for the archetype development and FHIR profiling work.</p>
+
+<h2>2.6 Health Data Standards and Communication Protocols</h2>
+
+<p>The architecture employs a strict "Fit-for-Purpose" multi-standard stack, where each standard is applied to the task for which it was designed, consistent with the emerging consensus in health informatics that no single standard adequately covers all requirements.<sup>[35]</sup></p>
+
+<h3>HL7 Standards: From RIM to FHIR</h3>
+<p>The HL7 Reference Information Model (RIM), the normative foundation of HL7 Version 3, defines six backbone classes — Act, Entity, Role, Participation, ActRelationship, and RoleLink — that model all healthcare information.<sup>[40]</sup> An EMU encounter maps to Act[classCode=ENC], the patient to Entity[PSN]+Role[PAT], and clinical team participations through typed Participation links (ATND for epileptologist, PRF for EEG technologist). While the RIM provides rigorous semantic grounding, its complexity limited HL7 v3 adoption. FHIR (Fast Healthcare Interoperability Resources, R4 normative since 2019) replaced RIM's abstract framework with ~150 concrete Resource types accessible via RESTful APIs in JSON/XML.<sup>[41]</sup> The platform uses FHIR R4 as the external API layer, with key resource mappings: Patient (RIM: Entity+Role), Encounter (Act[ENC]), Observation (Act[OBS]) for EEG findings, DiagnosticReport for structured EEG reports, Condition for the epilepsy diagnosis (problem list), ImagingStudy for DICOM references, and Consent for privacy management. SMART on FHIR v2.2.0 provides the authorization framework with OAuth 2.0 scopes, mandated by ONC for certified US EHR technology.<sup>[42]</sup></p>
+
+<h3>openEHR: Persistence Layer with Two-Level Modeling</h3>
+<p>openEHR's two-level modeling paradigm separates the stable technical Reference Model (Level 1) from clinical knowledge defined in archetypes (Level 2).<sup>[43]</sup> Five ENTRY subtypes — OBSERVATION, EVALUATION, INSTRUCTION, ACTION, ADMIN_ENTRY — derive from the Clinical Investigator Recording ontology, synthesized from Weed's problem-oriented method. Archetypes are defined in the Archetype Definition Language (ADL 2.0) using constraint expressions (cADL) that specify data types, cardinalities, value ranges, and terminology bindings to SNOMED CT or LOINC. Templates compose multiple archetypes for specific use cases — the EMU encounter template nests OBSERVATION.imaging_exam_result for MRI findings, a custom EEG observation archetype, EVALUATION.problem_diagnosis for the epilepsy diagnosis, ACTION.procedure for the monitoring procedure, and CLUSTER.device for neuromodulation devices.<sup>[44]</sup> openEHR serves as the internal clinical data repository with AQL (Archetype Query Language) querying, while FHIR provides the external interoperability API — a complementary architecture increasingly endorsed by both communities.<sup>[35]</sup></p>
+
+<h3>DICOM Neurophysiology Standards</h3>
+<p>DICOM Supplement 217 (2020) defines IODs for routine scalp EEG with 8-bit or 16-bit samples, channel-multiplexed encoding, unconstrained sampling frequency, standardized electrode naming (CID 3030), and annotation context groups (CID 3040).<sup>[26]</sup> Supplement 239 (2024) enables separate annotation objects referencing waveform data, supporting modality-specific annotations (spikes, bursts, seizure events) with temporal referencing at timepoints or epochs and channel-specific targeting — essential for multi-reviewer seizure annotation workflows.<sup>[27]</sup> Supplement 236 (2025) encodes visualization montage and filter settings as separate DICOM objects, supporting Laplacian derivations and time-varying montage per epoch — enabling reproducible EEG review across institutions for presurgical evaluation.<sup>[28]</sup> The platform implements these supplements while bridging critical gaps: no long-term monitoring EEG IOD (draft in progress), no intracranial EEG IOD, and no video-EEG synchronization IOD.<sup>[26]</sup></p>
+
+<h3>Terminology Standards and Cimino's Desiderata</h3>
+<p>Evaluated against Cimino's twelve desiderata for controlled medical vocabularies,<sup>[31]</sup> SNOMED CT provides the strongest backbone (polyhierarchy, formal description-logic definitions, nonsemantic identifiers, concept permanence), with approximately 370,000+ active concepts. However, critical epilepsy-specific gaps persist — no representation of high-frequency oscillations (HFOs), seizure onset patterns from stereo-EEG, or the ILAE 2017 reclassified seizure types. The Epilepsy and Seizure Ontology (EpSO) fills these gaps with OWL2-based formal encoding.<sup>[29]</sup> LOINC provides observation identifiers (e.g., LOINC 11524-6 for EEG study). ICD-10-CM encodes the diagnosis: G40.x19 codes capture intractable (drug-resistant) epilepsy by seizure type, where the 5th character "1" denotes intractability — though ICD-10 still uses abandoned terminology ("complex partial" rather than ILAE's "focal impaired awareness").<sup>[45]</sup> ICD-11 restructures epilepsy under block 8A6 with post-coordination capability, better aligning with the ILAE 2017 classification.<sup>[46]</sup> UMLS provides cross-vocabulary mapping through Concept Unique Identifiers (CUIs) — CUI C1096063 maps "Drug resistant epilepsy" across SNOMED CT (79348005), ICD-10-CM (G40.x1x), and MeSH (D000069279).<sup>[47]</sup> MeSH serves as the literature indexing layer (descriptor: Drug Resistant Epilepsy, D000069279, established 2015). UCUM provides units of measurement for medication dosing and physiological measurements.</p>
+
+<h3>IHE Integration Profiles</h3>
+<p>IHE Cross-Enterprise Document Sharing (XDS) provides the document-centric architecture for sharing EEG reports and imaging across institutions. Cross-Community Access (XCA) extends this across Affinity Domains via Initiating/Responding Gateways — directly applicable to multi-site Canadian epilepsy data sharing. Privacy Consent on FHIR (PCF v1.1.0) profiles the FHIR Consent resource with RBAC/ABAC enforcement and automated security labeling — critical for PIPEDA/PHIPA compliance.<sup>[48]</sup></p>
+
+<h3>Communication Protocols</h3>
+<p>The platform supports: HL7 v2.x ADT (admit/discharge/transfer) and ORU (observation results) messages for legacy EHR integration; FHIR RESTful API (CRUD + search) over HTTPS/TLS 1.3; DICOM DIMSE C-STORE for PACS push/pull; DICOMweb (WADO-RS, STOW-RS) for web-based imaging access; and OAuth 2.0/OpenID Connect for authentication. All data in transit is encrypted with TLS 1.3; data at rest uses AES-256 encryption with customer-managed keys.</p>
+
+<h2>2.7 Timelines and Milestones (2-Month Prototype)</h2>
+
+<div class="timeline">
+  <div class="week">Weeks 1–2</div>
+  <div class="tasks">
+    <strong>Architecture & ETL Foundation.</strong> Finalize system architecture. Establish openEHR Reference Model schema and author epilepsy-specific archetypes (EEG Observation, Seizure Event Evaluation, Electrode Placement Cluster). Develop ETL pipeline for EDF+ → DICOM Supplement 217 conversion with round-trip validation. Set up cloud infrastructure (AWS Canada/Montreal region) with HIPAA-eligible services and encryption.<br>
+    <em>Deliverable: Architecture design document; EDF+ ETL pipeline with &gt;99.9% waveform fidelity.</em>
+  </div>
+
+  <div class="week">Weeks 3–4</div>
+  <div class="tasks">
+    <strong>Vendor Format Ingestion & Video Compression.</strong> Extend ETL to Nihon Kohden (.EEG/.21E) and Natus (.erd) formats. Implement H.265/HEVC compression pipeline for video-EEG with parametric testing (QP 18–35). Establish adaptive bitrate streaming (HLS) for browser-based playback. Begin FHIR resource profiling for epilepsy-specific Observations.<br>
+    <em>Deliverable: 3-format ETL pipeline; H.265 compression achieving ≥40% reduction at SSIM ≥0.95.</em>
+  </div>
+
+  <div class="week">Weeks 5–6</div>
+  <div class="tasks">
+    <strong>FHIR/SMART on FHIR Integration & UI.</strong> Implement SMART on FHIR API layer with EHR Launch workflow. Develop FHIR Consent resource implementation for granular consent management. Build web-based front-end for unified patient timeline with POMR-structured navigation (problem list → linked EEG/imaging/device data). Implement FHIR Condition, Observation, DiagnosticReport, and ImagingStudy resources.<br>
+    <em>Deliverable: SMART on FHIR app passing SMART Health IT sandbox testing; web-based patient timeline viewer.</em>
+  </div>
+
+  <div class="week">Weeks 7–8</div>
+  <div class="tasks">
+    <strong>Security, Testing & Demo Preparation.</strong> Complete penetration testing (OWASP Top 10). Implement role-based access control with five user roles (epileptologist, neurosurgeon, EEG technologist, nurse, researcher). Implement audit logging per ISO 18308 requirements. Integrate sample multi-modal patient dataset (EEG + MRI + clinical data). Prepare demonstration for NRC IRAP advisory board and potential clinical partner.<br>
+    <em>Deliverable: Security audit report; functional prototype demonstrating complete data flow from proprietary EEG ingestion through unified visualization.</em>
+  </div>
+</div>
+
+<table>
+<tr><th>Milestone</th><th>Week</th><th>Success Criteria</th></tr>
+<tr><td>M1: Architecture Finalized</td><td>2</td><td>Design document reviewed by clinical advisor; openEHR archetypes published to CKM</td></tr>
+<tr><td>M2: ETL Pipeline Operational</td><td>4</td><td>3 vendor formats ingested; MAE &lt;0.1µV on round-trip validation</td></tr>
+<tr><td>M3: Video Compression Validated</td><td>5</td><td>≥40% size reduction; epileptologist confirms semiology preservation</td></tr>
+<tr><td>M4: FHIR Integration Complete</td><td>6</td><td>SMART on FHIR app launches from EHR sandbox; Consent resource functional</td></tr>
+<tr><td>M5: Demoable Prototype</td><td>8</td><td>End-to-end data flow demonstrated with multi-modal sample patient</td></tr>
+</table>
+
+<!-- ==================== 3. IMPLEMENTATION PLAN ==================== -->
+<div class="page-break"></div>
+<p class="section-label">Section 3</p>
+<h1>Implementation Plan for Demoable Prototype</h1>
+
+<h2>3.1 Regulatory Requirements</h2>
+
+<p><strong>United States — MDDS Exclusion.</strong> Under the 21st Century Cures Act §520(o)(1)(D), software for "transferring, storing, converting formats, or displaying" clinical or device data qualifies for the Medical Device Data System (MDDS) exclusion, provided it does not interpret or analyze data to drive clinical decisions.<sup>[7]</sup> The prototype's intended use — ingesting proprietary EEG data, converting to DICOM/FHIR standards, compressing video, and displaying the unified patient timeline for independent clinician review — falls squarely within MDDS scope. The January 2026 FDA CDS Final Guidance confirms that software processing medical signals (EEG) or medical images (MRI) fails Criterion 1 of the Non-Device CDS exemption, meaning <em>any future AI features</em> (seizure detection, spike detection, artifact removal) will require 510(k) clearance under product code OMB (21 CFR 882.1400, Class II).<sup>[49]</sup></p>
+
+<p><strong>Canada — Health Canada SaMD Classification.</strong> Health Canada's IMDRF-aligned framework classifies SaMD by significance of the information provided and the severity of the healthcare situation. For epilepsy (serious-to-critical condition), a data management/visualization platform that "informs clinical management" maps to <strong>Class II</strong> under Schedule 1, Rule 10(1), requiring a Medical Device Licence (MDL), MDSAP-certified quality system, and 15-day screening plus 60-day review.<sup>[50]</sup> A potential exclusion pathway exists under the <em>Medical Devices Regulations</em> for software that merely displays medical information to support independent HCP review — however, any signal processing (filtering, montage computation, artifact reduction) fails this exclusion. A Medical Device Establishment Licence (MDEL) is required for Canadian manufacturers ($5,426 fee, 25% small-business reduction).<sup>[51]</sup></p>
+
+<p><strong>Quality System Requirements.</strong> ISO 13485:2016 certification is mandatory for the Canadian market, with MDSAP (Medical Device Single Audit Program) mandatory for Class II+ MDL since January 2019. Year 1 costs: $25K–$80K for consulting, audit, training, and QMS software. SOC 2 Type II certification ($30K–$80K initial) is a practical requirement for US healthcare customer procurement.<sup>[52]</sup></p>
+
+<h2>3.2 Security and Privacy Protection</h2>
+
+<p>The platform must comply with the US Health Insurance Portability and Accountability Act (HIPAA), Canada's Personal Information Protection and Electronic Documents Act (PIPEDA), and provincial legislation including Ontario's Personal Health Information Protection Act (PHIPA) and Quebec's Law 25.<sup>[53]</sup></p>
+
+<p><strong>HIPAA compliance</strong> requires Business Associate Agreements with every covered entity client, encryption (AES-256 at rest, TLS 1.3 in transit), access controls, and immutable audit logs. Video-EEG always constitutes identifiable PHI under Safe Harbor identifier #17 (full-face photographs). Brain MRI poses re-identification risk — studies demonstrate 83–97% facial recognition accuracy from volumetric MRI.<sup>[54]</sup> For secondary research use, the platform supports both Safe Harbor de-identification (removal of 18 identifier categories) and Expert Determination (§164.514(b)(1)). AI-based facial de-identification (cartoonization or face-swapping per Hou et al. 2023, Dufau et al. 2024) preserves seizure semiology while reducing re-identification risk.<sup>[55]</sup></p>
+
+<p><strong>PHIPA compliance</strong> relies on implied consent within the "circle of care" for treatment purposes (PHIPA ss. 20(2)–20(3)) but requires express consent for disclosure to the SaaS platform as a non-HIC third party. The platform implements a <strong>dynamic consent</strong> interface using the FHIR Consent resource (R4 recursive provision structure) allowing patients to granularly control access: permit/deny by data type (EEG waveforms, video, imaging, clinical notes), by purpose (TREAT, HRESCH, HPAYMT), by actor, and by time period.<sup>[56]</sup> PHIPA Section 44 permits PHI disclosure for research without individual consent under strict conditions: written research plan, REB approval, and data sharing agreement.<sup>[57]</sup></p>
+
+<p><strong>Data residency:</strong> All Canadian patient data hosted in AWS Canada (Montreal) region with customer-managed KMS keys. RBAC enforces five roles (epileptologist, neurosurgeon, EEG technologist, nurse, researcher) with ABAC policies governing resource-type access, de-identification requirements, network location, and purpose-of-use. All access events logged to FHIR AuditEvent resources conforming to ISO 18308 and IHE ATNA profile.<sup>[32]</sup></p>
+
+<h2>3.3 Intellectual Property and Freedom to Operate</h2>
+
+<p><strong>IP Strategy.</strong> The platform's proprietary ETL pipelines (vendor-specific format parsing, normalization algorithms, and agentic AI orchestration) and openEHR archetype definitions for epilepsy neurodiagnostics will be protected as trade secrets. Novel methodologies for multi-modal data coregistration (3D electrode localization overlaid on brain MRI) will be evaluated for software patent protection. The Fit-for-Purpose architecture itself — the specific integration of openEHR persistence + FHIR exchange + DICOM neurophysiology waveforms — represents a novel system design.</p>
+
+<p><strong>Freedom to Operate (FTO) Assessment.</strong> Cloud-based data storage, format conversion, and visualization carry <strong>low infringement risk</strong> — no blocking patents were identified for MDDS-classified data management platforms. Multi-vendor data ingestion carries <strong>moderate risk</strong> due to proprietary format structures (not patent-protected but contractually restricted). AI-based seizure detection carries <strong>high risk</strong> due to Ceribell's broad US10,743,809 covering ML-based seizure detection pipelines. AI-based artifact removal carries <strong>moderate-high risk</strong> due to Persyst's BSS-CCA patents (US11,317,871).<sup>[58]</sup> Several foundational patents have recently expired, expanding the public domain design space: NeuroPace US6,810,285 (~2024), US6,230,049 (~2020), Persyst US6,735,467 (~2022).<sup>[58]</sup></p>
+
+<p><strong>Strategic positioning:</strong> By launching as MDDS (data transfer/storage/display without interpretation), the platform avoids the densest patent thickets. Future AI features will employ transformer-based architectures and attention mechanisms distinct from the patented feature-extraction pipelines (ensemble gradient-boosted trees, CNNs, LSTMs).<sup>[58]</sup></p>
+
+<h2>3.4 Relevant Patents (Top 5)</h2>
+
+<table>
+<tr><th>#</th><th>Patent</th><th>Holder</th><th>Description</th><th>Risk</th></tr>
+<tr><td>1</td><td>US10,743,809 B1 (2020)</td><td>Ceribell, Inc.</td><td>Broad ML-based multi-channel EEG seizure detection pipeline covering signal segmentation, feature extraction, ensemble classification (gradient-boosted trees, CNNs, LSTMs), and seizure burden calculation. Active until ~2039.</td><td style="color:var(--warn);font-weight:600;">HIGH</td></tr>
+<tr><td>2</td><td>US11,317,871 B2 (2022)</td><td>Persyst Development Corp.</td><td>EEG artifact removal via Blind Source Separation with Canonical Correlation Analysis (BSS-CCA) and ICA for automated muscle, eye, and electrode artifact separation.</td><td style="color:var(--warn);font-weight:600;">HIGH</td></tr>
+<tr><td>3</td><td>US6,735,467 B2 (2004)</td><td>Persyst Development Corp.</td><td>Foundational seizure detection using matching pursuit decomposition, neural networks, and clustering. <strong>EXPIRED ~2022</strong> — now public domain.</td><td style="color:green;font-weight:600;">FAVORABLE</td></tr>
+<tr><td>4</td><td>US7,813,793 B2 (2010)</td><td>NeuroPace, Inc.</td><td>Implantable device seizure detection circuitry using half-wave features, line lengths, and 3–20 Hz bandpass filtering. Protects on-device algorithms, not cloud platforms.</td><td style="font-weight:600;">MODERATE</td></tr>
+<tr><td>5</td><td>US9,820,658 B2 (2017)</td><td>(Healthcare interop.)</td><td>Interoperable healthcare system with standardized-format data collection, cloud storage, and remote monitoring. Broad but limited enforceability against open standards (FHIR, DICOM, EDF+).</td><td style="font-weight:600;">MODERATE</td></tr>
+</table>
+
+<h2>3.5 Market</h2>
+
+<p><strong>Target market:</strong> ~250 NAEC-accredited Level 4 epilepsy centers in the US and ~20 comprehensive epilepsy programs in Canada, encompassing approximately 26–29 active EMUs with an average of 3.6 beds each in Canada alone.<sup>[17]</sup> Secondary targets: ~350 Level 3 centers, ambulatory EEG providers, and neuromodulation clinics.</p>
+
+<p><strong>Market size:</strong> Core North American TAM for EMU data management: $15M–$65M annually at $40K–$100K per center. The global EEG market ($1.3–$1.7B, CAGR 5–10%) and neurotech investment ($2.3B in 2024 across 129 deals) provide strong tailwinds.<sup>[6]</sup></p>
+
+<p><strong>Barriers:</strong> (1) Entrenched legacy vendors (Natus, Nihon Kohden) requiring proof of workflow efficiency gains to force switching; (2) 9–24 month hospital sales cycles; (3) data migration complexity for legacy archives; (4) provincial health privacy variation in Canada (Ontario PHIPA vs. Quebec Law 25 vs. Alberta HIA). <strong>Regulatory barrier:</strong> ISO 13485/MDSAP certification required before Canadian MDL application (9–18 month timeline, $25K–$80K).<sup>[52]</sup></p>
+
+<p><strong>Competitive advantage:</strong> No existing product unifies video-EEG + brain imaging + neuromodulation data across vendor boundaries. Persyst supports ~70 EEG formats but does not integrate imaging or device data. NeuroPace PDMS is RNS-only. PACS vendors archive but cannot analyze EEG. The platform's interoperability layer — bridging DICOM (clinical), BIDS (research), and FHIR (exchange) — occupies a unique standards convergence point.<sup>[4]</sup></p>
+
+<h2>3.6 Commercialization Timelines</h2>
+
+<div class="timeline">
+  <div class="week">Months 1–3</div>
+  <div class="tasks">Secure NRC IRAP Accelerated Review funding ($30K–$50K). Complete MVP data platform (ETL + viewer + FHIR API). File MDEL application with Health Canada.</div>
+  <div class="week">Months 4–6</div>
+  <div class="tasks">Retroactively claim SR&ED + OITC tax credits (~$43K–$65K on $100K R&D spend). Deploy pilot at partnering Level 4 EMU. Collect workflow efficiency metrics. Begin ISO 13485 QMS implementation.</div>
+  <div class="week">Months 7–12</div>
+  <div class="tasks">Secure Mitacs Accelerate internship ($15K value for $7.5K). Apply for NSERC Alliance Grant ($20K–$60K). Publish pilot results. Expand to 2–3 additional sites. Begin SOC 2 Type II audit.</div>
+  <div class="week">Year 2+</div>
+  <div class="tasks"><strong>Follow-on steps:</strong> Raise Seed venture capital ($1.5M–$3M) for US market expansion. Achieve MDSAP/ISO 13485 certification. Pursue FDA 510(k) for AI seizure detection module using Persyst K222002 as predicate. Scale to 20+ Level 4 centers. Develop pharma partnership for clinical trial EEG data management.</div>
+</div>
+
+<h2>3.7 Impact</h2>
+
+<p><strong>Economic impact.</strong> The platform addresses a $15M–$65M North American TAM with high-margin recurring SaaS revenue and no direct competitor. By reducing manual data aggregation (currently 30–60 minutes per conference case) and enabling faster presurgical evaluation, each center increases patient throughput and reduces per-case costs. Alberta data shows healthcare costs escalate by CAD $341 every 6 months before EMU admission but fall by CAD $802 every 6 months after — and surgery patients see costs drop by half.<sup>[59]</sup> The estimated Canadian national economic burden of epilepsy is CAD $3.4–$4.5 billion annually.<sup>[60]</sup></p>
+
+<p><strong>Clinical and social impact.</strong> Every year of surgical delay exposes DRE patients to 3.7–9.0 per 1,000 risk of SUDEP — surgery reduces this three-fold.<sup>[10]</sup> With only 1.2% of eligible Ontario patients reaching surgery within 2 years,<sup>[15]</sup> even a modest acceleration of the presurgical evaluation pipeline would save lives. Helmstaedter et al. (2003) showed that 50–60% of temporal lobe epilepsy patients experience progressive memory decline, but seizure freedom can halt and even reverse cognitive deterioration.<sup>[61]</sup> The platform enables the multidisciplinary team to synthesize concordant data faster, directly reducing time-to-surgical-decision. For the over 1.1 million North American DRE patients, this infrastructure is not merely a workflow improvement — it is the prerequisite for closing the gap between the availability and utilization of life-saving epilepsy surgery.</p>
+
+<!-- ==================== 4. APPENDIX ==================== -->
+<div class="page-break"></div>
+<p class="section-label">Section 4</p>
+<h1>Appendix</h1>
+
+<h2>A. References</h2>
+<div class="ref-list">
+<p>[1] Kwan P, Brodie MJ. Early identification of refractory epilepsy. <em>NEJM</em>. 2000;342(5):314-319. / Kwan P, et al. Definition of drug resistant epilepsy: consensus proposal by the ad hoc Task Force of the ILAE Commission on Therapeutic Strategies. <em>Epilepsia</em>. 2010;51(6):1069-1077.</p>
+<p>[2] Campbell ZM, et al. Delays from diagnosis to surgery for drug-resistant epilepsy: a population-based study. <em>Epilepsia</em>. 2024. / Bhatt A, et al. Wait times for epilepsy surgery in Saskatchewan. <em>Can J Neurol Sci</em>. 2023.</p>
+<p>[3] Sullivan R, et al. HEVC/H.265 video compression for medical applications. <em>J Digital Imaging</em>. 2020;33:1105-1115. / DICOM Standard PS3.5 Section 8.2.10: HEVC/H.265 Transfer Syntaxes.</p>
+<p>[4] Market validation analysis: competitive landscape assessment of EEG platforms (Natus, Nihon Kohden, Persyst, Compumedics), neuromodulation device portals (NeuroPace PDMS, Medtronic Percept, LivaNova), and PACS/VNA vendors. Internal research, February 2026.</p>
+<p>[5] NAEC Epilepsy Center accreditation data, 2024. / Epilepsy Foundation: EMU admission volume estimates.</p>
+<p>[6] Grand View Research. EEG Devices Market Size Report, 2024-2030. / Allied Market Research. EEG Systems Market Global Opportunity Analysis, 2024.</p>
+<p>[7] 21st Century Cures Act, §520(o)(1)(D): MDDS exclusion. / FDA Guidance: Clinical Decision Support Software (Final, January 2026). / Health Canada: Software as a Medical Device (SaMD) classification framework.</p>
+<p>[8] NRC IRAP Accelerated Review Process guidelines. / SR&ED Tax Credit Program: Enhanced ITC rate 35% refundable on qualifying R&D (Budget 2025 threshold increase to $6M). / Mitacs Accelerate program guidelines. / NSERC Alliance Grants program.</p>
+<p>[9] Bhatt A, et al. Canadian neurologist survey: barriers to epilepsy surgery. 75%+ identified inadequate healthcare resources; 34.4% cited long wait times.</p>
+<p>[10] Rheims S, et al. SUDEP risk reduction after epilepsy surgery. <em>Epilepsia</em>. 2022. OR 0.32 (95% CI 0.19–0.56, p&lt;0.001). / Casadei CH, et al. SUDEP in surgical vs. non-surgical patients. <em>Epilepsy Behav</em>. 2020;104:106525.</p>
+<p>[11] Sahoo SS, et al. Epilepsy informatics: Three V challenges of volume, velocity, variety. <em>Front Neuroinformatics</em>. 2015. / EMU data volume estimates: 500GB–2TB per 5-day admission.</p>
+<p>[12] CMA Physician Masterfile, 2012: ~854 neurologists. Canada Government Job Bank: "strong risk of shortage" for neurologists through 2033. Neurologist density: 2.8 per 100,000 (2018).</p>
+<p>[13] Persyst Development Corp.: supports ~70 proprietary EEG formats. EDF+ specification: Kemp B, Olivan J. <em>Clin Neurophysiol</em>. 2003;114:1755-1761.</p>
+<p>[14] Thomas GP, Jobst BC. Critical review of the responsive neurostimulator system. <em>Med Devices</em>. 2015;8:405-411. / Quraishi IH, Hirsch LJ. Advances in ambulatory long-term iEEG. <em>Stereotact Funct Neurosurg</em>. 2025.</p>
+<p>[15] Bowen JM, et al. Epilepsy surgery utilization in Ontario: 1.2% of intractable patients within 2 years (2001-2010). Ontario HTA analysis.</p>
+<p>[16] Ontario expert panel on epilepsy care: 19 permanent EMU beds (2012), recommended expansion to 50 beds for 675 children + 1,050 adults annually.</p>
+<p>[17] Canadian Epilepsy Alliance and provincial program data: 26–29 active EMUs across 6 of 13 provinces/territories; 7 provinces/territories have zero EMU capacity. Average EMU: 3.6 beds.</p>
+<p>[18] Sousa S, et al. INTUITION: An integrated platform for epilepsy surgery informatics. <em>Front Digital Health</em>. 2023.</p>
+<p>[19] Sahoo SS, et al. Three V challenges for epilepsy informatics. <em>Front Neuroinformatics</em>. 2015;9:2.</p>
+<p>[20] Quraishi IH, Hirsch LJ. Long-term ambulatory iEEG monitoring. <em>Stereotact Funct Neurosurg</em>. 2025.</p>
+<p>[21] Thomas GP, Jobst BC. Responsive neurostimulator system. <em>Med Devices: Evidence and Research</em>. 2015;8:405-411.</p>
+<p>[22] ASET (American Society of EEG Technologists) position statement on EEG data management practices in Epilepsy Monitoring Units.</p>
+<p>[23] Wiebe S, et al. A randomized, controlled trial of surgery for temporal-lobe epilepsy. <em>NEJM</em>. 2001;345(5):311-318.</p>
+<p>[24] Engel J Jr, et al. Early surgical therapy for drug-resistant temporal lobe epilepsy: a randomized trial (ERSET). <em>JAMA</em>. 2012;307(9):922-930.</p>
+<p>[25] Engel J Jr. The current place of epilepsy surgery. <em>Curr Opin Neurol</em>. 2018;31(2):192-197.</p>
+<p>[26] DICOM Supplement 217: Neurophysiology Waveforms. DICOM Standards Committee, Working Group 32, 2020 (updated 2022).</p>
+<p>[27] DICOM Supplement 239: Waveform Annotation Structured Report. 2024.</p>
+<p>[28] DICOM Supplement 236: Waveform Presentation State. 2025.</p>
+<p>[29] Sahoo SS, et al. Epilepsy and seizure ontology (EpSO). <em>JAMIA</em>. 2014;21(1):82-89. / Keloth VK, et al. Epilepsy Ontology (EPIO). <em>Database</em>. 2023;baad018.</p>
+<p>[30] Weed LL. Medical records that guide and teach. <em>NEJM</em>. 1968;278(11):593-600, 278(12):652-657.</p>
+<p>[31] Cimino JJ. Desiderata for controlled medical vocabularies in the twenty-first century. <em>Methods Inf Med</em>. 1998;37(4-5):394-403.</p>
+<p>[32] ISO 18308:2011. Health informatics — Requirements for an electronic health record architecture.</p>
+<p>[33] Baud MO, et al. Multi-day rhythms modulate seizure risk in epilepsy. <em>Nature Communications</em>. 2018;9:88.</p>
+<p>[34] Frontiers in Neurology. Biological rhythms and epilepsy treatment. 2023. doi:10.3389/fneur.2023.1153975.</p>
+<p>[35] openEHR and HL7 FHIR complementarity: Beale T. The openEHR EHR system architecture. openEHR Foundation, 2023. / HL7-openEHR Amsterdam collaboration meeting, June 2025.</p>
+<p>[36] ITU-T H.265 (HEVC): 25-50% bitrate improvement over H.264 at equivalent SSIM. / ROI-based hierarchical HEVC for medical video: 13.52% additional bitrate reduction.</p>
+<p>[37] Baumgartner C, et al. First clinical implementation of DICOM-EEG at WIGEV Epilepsy Center, Vienna. 2023.</p>
+<p>[38] EDF+ limitations: 16-bit resolution only; no native video support; no electrode localization; no encryption. Kemp B, Olivan J. <em>Clin Neurophysiol</em>. 2003. / BIDS-iEEG: Holdgraf C, et al. <em>Scientific Data</em>. 2019;6:102.</p>
+<p>[39] Gartner Research: Hospital IT procurement cycles average 9-24 months, ~9 stakeholders per decision.</p>
+<p>[40] HL7 Reference Information Model (RIM). ISO/HL7 21731:2014. Six backbone classes: Act, Entity, Role, Participation, ActRelationship, RoleLink.</p>
+<p>[41] HL7 FHIR R4 (v4.0.1), normative January 2019. ~150 resource types. / FHIR R5, 2023. / Smith B, Ceusters W. HL7 RIM: an incoherent standard. <em>Stud Health Technol Inform</em>. 2006;124:133-138.</p>
+<p>[42] SMART on FHIR v2.2.0 (STU 2.2). ONC Health IT Certification Program mandate for US certified EHR technology.</p>
+<p>[43] Beale T. Archetypes: constraint-based domain models for future-proof information systems. OOPSLA Workshop, 2002. / openEHR Architecture Overview, Release 1.0.4.</p>
+<p>[44] Papež V, Mouček R. Archetype-based approach to EEG/ERP experiments. <em>Front Neuroinformatics</em>. 2017;11:24. / openEHR CKM archetypes: OBSERVATION.imaging_exam_result.v0, EVALUATION.problem_diagnosis.v1, ACTION.procedure.v1.</p>
+<p>[45] ICD-10-CM G40.x: 5th character "1" = intractable. / Validation study: sensitivity 90%, specificity 86% for drug-resistant epilepsy identification (PMC8424723).</p>
+<p>[46] ICD-11 block 8A6. Jette N, et al. ICD coding for epilepsy: ILAE Task Force report. <em>Epilepsia</em>. 2015;56(3):348-355.</p>
+<p>[47] UMLS Metathesaurus (2025AB): CUI C1096063 maps drug resistant epilepsy across SNOMED CT, ICD-10-CM, MeSH. / Bodenreider O. <em>Nucleic Acids Res</em>. 2004;32:D267-270.</p>
+<p>[48] IHE IT Infrastructure: XDS, XCA, PCF profiles. / IHE Radiology: XDS-I for imaging document sharing.</p>
+<p>[49] FDA product code OMB: 21 CFR 882.1400, Class II. Predicates: Persyst 15 (K222002), Natus NeuroWorks (K200878), encevis (K240993).</p>
+<p>[50] Health Canada SaMD classification: IMDRF framework. Rule 10(1): Class II for "inform clinical management" + serious/critical condition. Rule 10(2): Class III for "diagnose/drive clinical management."</p>
+<p>[51] MDEL fee: $5,426 (25% small business reduction). Processing: 120-day target.</p>
+<p>[52] ISO 13485:2016 certification: 9-18 months, $25K-$80K. MDSAP mandatory since January 2019 for Health Canada Class II+. SOC 2 Type II: 6-15 months, $30K-$80K.</p>
+<p>[53] HIPAA (45 CFR Parts 160, 164). PIPEDA (S.C. 2000, c. 5). PHIPA (S.O. 2004, c. 3, Sched. A). Quebec Law 25 (2024).</p>
+<p>[54] Schwarz CG, et al. Identification of anonymous MRI research participants. <em>NEJM</em>. 2019;381:1684-1686. / Schwarz CG, et al. Changing the face of neuroimaging research. <em>NeuroImage</em>. 2021;231:117845.</p>
+<p>[55] Hou JC, et al. AI-based facial de-identification in seizure videos. <em>Mayo Clin Proc: Digital Health</em>. 2023;1(4):619-628. / Dufau S, et al. Face swapping in seizure videos. <em>Epilepsy Research</em>. 2024;107416.</p>
+<p>[56] HL7 FHIR Consent Resource (R4 v4.0.1). / Kaye J, et al. Dynamic consent. <em>EJHG</em>. 2015;23:141-146.</p>
+<p>[57] PHIPA Section 44: research disclosure provisions. / PHIPA 2020 amendments (Bill 188): electronic audit logs, $200K/$1M penalties.</p>
+<p>[58] Patent landscape analysis: US10,743,809 B1 (Ceribell), US11,317,871 B2 (Persyst), US6,735,467 B2 (Persyst, expired), US7,813,793 B2 (NeuroPace), US9,820,658 B2. Freedom-to-operate assessment, February 2026.</p>
+<p>[59] Jetté N, et al. Healthcare resource utilization and costs in epilepsy. Alberta longitudinal data: costs escalating CAD $341/6mo pre-EMU, falling CAD $802/6mo post-EMU.</p>
+<p>[60] Estimated Canadian epilepsy burden: CAD $3.4-$4.5B annually (300,000+ patients × international average $11,432/year).</p>
+<p>[61] Helmstaedter C, et al. Chronic epilepsy and cognition. <em>Ann Neurol</em>. 2003;54:425-432. / Helmstaedter C, et al. Long-term cognitive outcome after surgery. <em>Seizure</em>. 2018;60:1-6.</p>
+</div>
+
+<!-- ==================== APPENDIX B: ARCHITECTURE DIAGRAM ==================== -->
+<h2>B. System Architecture Diagram</h2>
+<div class="figure">
+<svg viewBox="0 0 820 520" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Arial, sans-serif">
+  <!-- Background -->
+  <rect width="820" height="520" fill="#f7fafc" rx="8"/>
+  
+  <!-- Title -->
+  <text x="410" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#1a365d">Fit-for-Purpose Multi-Standard Architecture</text>
+  
+  <!-- DATA SOURCES (Left) -->
+  <rect x="15" y="50" width="165" height="420" rx="6" fill="#fff" stroke="#cbd5e0" stroke-width="1.5"/>
+  <text x="97" y="70" text-anchor="middle" font-size="10" font-weight="700" fill="#2b6cb0">DATA SOURCES</text>
+  
+  <rect x="25" y="82" width="145" height="44" rx="4" fill="#ebf8ff" stroke="#90cdf4"/>
+  <text x="97" y="100" text-anchor="middle" font-size="8.5" font-weight="600" fill="#2c5282">EEG Systems</text>
+  <text x="97" y="118" text-anchor="middle" font-size="7.5" fill="#4a5568">Nihon Kohden · Natus</text>
+  
+  <rect x="25" y="134" width="145" height="44" rx="4" fill="#ebf8ff" stroke="#90cdf4"/>
+  <text x="97" y="152" text-anchor="middle" font-size="8.5" font-weight="600" fill="#2c5282">Imaging (PACS)</text>
+  <text x="97" y="170" text-anchor="middle" font-size="7.5" fill="#4a5568">MRI · PET · SPECT · CT</text>
+  
+  <rect x="25" y="186" width="145" height="44" rx="4" fill="#ebf8ff" stroke="#90cdf4"/>
+  <text x="97" y="204" text-anchor="middle" font-size="8.5" font-weight="600" fill="#2c5282">Neurostim Devices</text>
+  <text x="97" y="222" text-anchor="middle" font-size="7.5" fill="#4a5568">RNS · VNS · DBS</text>
+  
+  <rect x="25" y="238" width="145" height="44" rx="4" fill="#ebf8ff" stroke="#90cdf4"/>
+  <text x="97" y="256" text-anchor="middle" font-size="8.5" font-weight="600" fill="#2c5282">Video Cameras</text>
+  <text x="97" y="274" text-anchor="middle" font-size="7.5" fill="#4a5568">1080p Dual-Camera</text>
+  
+  <rect x="25" y="290" width="145" height="44" rx="4" fill="#ebf8ff" stroke="#90cdf4"/>
+  <text x="97" y="308" text-anchor="middle" font-size="8.5" font-weight="600" fill="#2c5282">EHR / Legacy HL7</text>
+  <text x="97" y="326" text-anchor="middle" font-size="7.5" fill="#4a5568">Epic · Cerner · HL7v2</text>
+  
+  <!-- EDGE APPLIANCE -->
+  <rect x="25" y="350" width="145" height="60" rx="4" fill="#fefcbf" stroke="#ecc94b" stroke-width="1.5"/>
+  <text x="97" y="370" text-anchor="middle" font-size="9" font-weight="700" fill="#744210">Edge Appliance</text>
+  <text x="97" y="384" text-anchor="middle" font-size="7" fill="#744210">Local ingestion</text>
+  <text x="97" y="396" text-anchor="middle" font-size="7" fill="#744210">H.265 compression</text>
+  <text x="97" y="408" text-anchor="middle" font-size="7" fill="#744210">Async cloud upload</text>
+  
+  <!-- Arrows from sources to edge -->
+  <line x1="97" y1="126" x2="97" y2="134" stroke="#90cdf4" stroke-width="1" marker-end="url(#arrowBlue)"/>
+  <line x1="97" y1="178" x2="97" y2="186" stroke="#90cdf4" stroke-width="1"/>
+  <line x1="97" y1="230" x2="97" y2="238" stroke="#90cdf4" stroke-width="1"/>
+  <line x1="97" y1="282" x2="97" y2="290" stroke="#90cdf4" stroke-width="1"/>
+  <line x1="97" y1="334" x2="97" y2="350" stroke="#90cdf4" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- PROCESSING LAYER (Center) -->
+  <rect x="200" y="50" width="270" height="420" rx="6" fill="#fff" stroke="#2b6cb0" stroke-width="2"/>
+  <text x="335" y="70" text-anchor="middle" font-size="10" font-weight="700" fill="#2b6cb0">CLOUD PLATFORM (AWS Canada / Montreal)</text>
+  
+  <!-- ETL -->
+  <rect x="215" y="82" width="240" height="55" rx="4" fill="#c6f6d5" stroke="#68d391"/>
+  <text x="335" y="100" text-anchor="middle" font-size="9" font-weight="700" fill="#22543d">Agentic AI ETL Pipelines</text>
+  <text x="335" y="114" text-anchor="middle" font-size="7.5" fill="#276749">Format Parsing → Normalization → DICOM S.217 / FHIR R4</text>
+  <text x="335" y="128" text-anchor="middle" font-size="7.5" fill="#276749">EDF+ · .EEG · .erd · DICOM · HL7v2 ADT/ORU</text>
+  
+  <!-- openEHR Layer -->
+  <rect x="215" y="148" width="115" height="70" rx="4" fill="#e9d8fd" stroke="#9f7aea"/>
+  <text x="272" y="166" text-anchor="middle" font-size="9" font-weight="700" fill="#44337a">openEHR CDR</text>
+  <text x="272" y="180" text-anchor="middle" font-size="7" fill="#553c9a">Persistence Layer</text>
+  <text x="272" y="192" text-anchor="middle" font-size="7" fill="#553c9a">Archetypes (ADL 2)</text>
+  <text x="272" y="204" text-anchor="middle" font-size="7" fill="#553c9a">AQL Queries</text>
+  
+  <!-- FHIR Layer -->
+  <rect x="340" y="148" width="115" height="70" rx="4" fill="#fed7d7" stroke="#fc8181"/>
+  <text x="397" y="166" text-anchor="middle" font-size="9" font-weight="700" fill="#742a2a">FHIR R4 API</text>
+  <text x="397" y="180" text-anchor="middle" font-size="7" fill="#9b2c2c">Exchange Layer</text>
+  <text x="397" y="192" text-anchor="middle" font-size="7" fill="#9b2c2c">SMART on FHIR</text>
+  <text x="397" y="204" text-anchor="middle" font-size="7" fill="#9b2c2c">Consent Resource</text>
+  
+  <!-- DICOM Layer -->
+  <rect x="215" y="228" width="240" height="48" rx="4" fill="#feebc8" stroke="#f6ad55"/>
+  <text x="335" y="247" text-anchor="middle" font-size="9" font-weight="700" fill="#7b341e">DICOM Services</text>
+  <text x="335" y="263" text-anchor="middle" font-size="7.5" fill="#9c4221">Supp. 217 (EEG) · 239 (Annotations) · 236 (Presentation) · DICOMweb</text>
+  
+  <!-- Terminology -->
+  <rect x="215" y="286" width="240" height="40" rx="4" fill="#f0fff4" stroke="#68d391"/>
+  <text x="335" y="302" text-anchor="middle" font-size="8" font-weight="600" fill="#22543d">Terminology Services</text>
+  <text x="335" y="316" text-anchor="middle" font-size="7" fill="#276749">SNOMED CT · LOINC · ICD-10/11 · EpSO · UMLS (CUI mapping) · MeSH</text>
+  
+  <!-- Object Storage -->
+  <rect x="215" y="336" width="115" height="50" rx="4" fill="#e2e8f0" stroke="#a0aec0"/>
+  <text x="272" y="354" text-anchor="middle" font-size="8" font-weight="600" fill="#2d3748">Object Storage</text>
+  <text x="272" y="368" text-anchor="middle" font-size="7" fill="#4a5568">S3 (Hot/Warm/Cold)</text>
+  <text x="272" y="380" text-anchor="middle" font-size="7" fill="#4a5568">AES-256 · CMK</text>
+  
+  <!-- Security -->
+  <rect x="340" y="336" width="115" height="50" rx="4" fill="#e2e8f0" stroke="#a0aec0"/>
+  <text x="397" y="354" text-anchor="middle" font-size="8" font-weight="600" fill="#2d3748">Security Layer</text>
+  <text x="397" y="368" text-anchor="middle" font-size="7" fill="#4a5568">RBAC/ABAC · TLS 1.3</text>
+  <text x="397" y="380" text-anchor="middle" font-size="7" fill="#4a5568">Audit (AuditEvent)</text>
+  
+  <!-- HLS Streaming -->
+  <rect x="215" y="396" width="240" height="35" rx="4" fill="#bee3f8" stroke="#63b3ed"/>
+  <text x="335" y="418" text-anchor="middle" font-size="8" font-weight="600" fill="#2a4365">H.265 / HLS Adaptive Bitrate Video Streaming</text>
+
+  <!-- CONSUMERS (Right) -->
+  <rect x="490" y="50" width="160" height="420" rx="6" fill="#fff" stroke="#cbd5e0" stroke-width="1.5"/>
+  <text x="570" y="70" text-anchor="middle" font-size="10" font-weight="700" fill="#2b6cb0">CONSUMERS</text>
+  
+  <rect x="500" y="82" width="140" height="50" rx="4" fill="#c6f6d5" stroke="#68d391"/>
+  <text x="570" y="100" text-anchor="middle" font-size="8.5" font-weight="600" fill="#22543d">Epileptologist</text>
+  <text x="570" y="114" text-anchor="middle" font-size="7" fill="#276749">Unified Timeline Viewer</text>
+  <text x="570" y="126" text-anchor="middle" font-size="7" fill="#276749">Full EEG+Video+Imaging</text>
+  
+  <rect x="500" y="140" width="140" height="50" rx="4" fill="#c6f6d5" stroke="#68d391"/>
+  <text x="570" y="158" text-anchor="middle" font-size="8.5" font-weight="600" fill="#22543d">Neurosurgeon</text>
+  <text x="570" y="172" text-anchor="middle" font-size="7" fill="#276749">3D Electrode Maps</text>
+  <text x="570" y="184" text-anchor="middle" font-size="7" fill="#276749">Surgical Planning View</text>
+  
+  <rect x="500" y="198" width="140" height="50" rx="4" fill="#c6f6d5" stroke="#68d391"/>
+  <text x="570" y="216" text-anchor="middle" font-size="8.5" font-weight="600" fill="#22543d">EEG Technologist</text>
+  <text x="570" y="230" text-anchor="middle" font-size="7" fill="#276749">Annotation Interface</text>
+  <text x="570" y="242" text-anchor="middle" font-size="7" fill="#276749">Recording QC</text>
+  
+  <rect x="500" y="256" width="140" height="50" rx="4" fill="#feebc8" stroke="#f6ad55"/>
+  <text x="570" y="274" text-anchor="middle" font-size="8.5" font-weight="600" fill="#7b341e">MDT Conference</text>
+  <text x="570" y="288" text-anchor="middle" font-size="7" fill="#9c4221">POMR Dashboard</text>
+  <text x="570" y="300" text-anchor="middle" font-size="7" fill="#9c4221">Concordance Matrix</text>
+  
+  <rect x="500" y="314" width="140" height="50" rx="4" fill="#e9d8fd" stroke="#9f7aea"/>
+  <text x="570" y="332" text-anchor="middle" font-size="8.5" font-weight="600" fill="#44337a">EHR Integration</text>
+  <text x="570" y="346" text-anchor="middle" font-size="7" fill="#553c9a">SMART on FHIR Apps</text>
+  <text x="570" y="358" text-anchor="middle" font-size="7" fill="#553c9a">Epic · Oracle Health</text>
+  
+  <rect x="500" y="372" width="140" height="50" rx="4" fill="#fed7d7" stroke="#fc8181"/>
+  <text x="570" y="390" text-anchor="middle" font-size="8.5" font-weight="600" fill="#742a2a">Research</text>
+  <text x="570" y="404" text-anchor="middle" font-size="7" fill="#9b2c2c">De-identified Export</text>
+  <text x="570" y="416" text-anchor="middle" font-size="7" fill="#9b2c2c">BIDS / IRB-controlled</text>
+
+  <!-- IHE Profiles box -->
+  <rect x="665" y="50" width="145" height="420" rx="6" fill="#fff" stroke="#cbd5e0" stroke-width="1.5"/>
+  <text x="737" y="70" text-anchor="middle" font-size="10" font-weight="700" fill="#2b6cb0">STANDARDS</text>
+  
+  <rect x="675" y="85" width="125" height="38" rx="3" fill="#ebf8ff" stroke="#90cdf4"/>
+  <text x="737" y="104" text-anchor="middle" font-size="8" font-weight="600" fill="#2c5282">IHE XDS / XCA</text>
+  <text x="737" y="116" text-anchor="middle" font-size="6.5" fill="#4a5568">Cross-Site Document Sharing</text>
+  
+  <rect x="675" y="130" width="125" height="38" rx="3" fill="#ebf8ff" stroke="#90cdf4"/>
+  <text x="737" y="149" text-anchor="middle" font-size="8" font-weight="600" fill="#2c5282">IHE PCF</text>
+  <text x="737" y="161" text-anchor="middle" font-size="6.5" fill="#4a5568">Privacy Consent on FHIR</text>
+  
+  <rect x="675" y="175" width="125" height="38" rx="3" fill="#ebf8ff" stroke="#90cdf4"/>
+  <text x="737" y="194" text-anchor="middle" font-size="8" font-weight="600" fill="#2c5282">HIPAA / PHIPA</text>
+  <text x="737" y="206" text-anchor="middle" font-size="6.5" fill="#4a5568">BAA · Circle of Care</text>
+  
+  <rect x="675" y="220" width="125" height="38" rx="3" fill="#ebf8ff" stroke="#90cdf4"/>
+  <text x="737" y="239" text-anchor="middle" font-size="8" font-weight="600" fill="#2c5282">ISO 13485 / MDSAP</text>
+  <text x="737" y="251" text-anchor="middle" font-size="6.5" fill="#4a5568">Quality Management</text>
+  
+  <rect x="675" y="265" width="125" height="38" rx="3" fill="#ebf8ff" stroke="#90cdf4"/>
+  <text x="737" y="284" text-anchor="middle" font-size="8" font-weight="600" fill="#2c5282">ISO 18308</text>
+  <text x="737" y="296" text-anchor="middle" font-size="6.5" fill="#4a5568">EHR Architecture Reqs</text>
+
+  <rect x="675" y="310" width="125" height="38" rx="3" fill="#fefcbf" stroke="#ecc94b"/>
+  <text x="737" y="329" text-anchor="middle" font-size="8" font-weight="600" fill="#744210">MDDS / 21st Century</text>
+  <text x="737" y="341" text-anchor="middle" font-size="6.5" fill="#744210">Cures Act §520(o)</text>
+  
+  <rect x="675" y="355" width="125" height="38" rx="3" fill="#fefcbf" stroke="#ecc94b"/>
+  <text x="737" y="374" text-anchor="middle" font-size="8" font-weight="600" fill="#744210">SOC 2 Type II</text>
+  <text x="737" y="386" text-anchor="middle" font-size="6.5" fill="#744210">Security + Confidentiality</text>
+  
+  <rect x="675" y="400" width="125" height="38" rx="3" fill="#c6f6d5" stroke="#68d391"/>
+  <text x="737" y="419" text-anchor="middle" font-size="8" font-weight="600" fill="#22543d">ILAE 2017 / ILAE 2022</text>
+  <text x="737" y="431" text-anchor="middle" font-size="6.5" fill="#276749">Classification Standards</text>
+
+  <!-- Arrows -->
+  <defs>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2b6cb0"/></marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#38a169"/></marker>
+  </defs>
+  
+  <!-- Edge to Cloud -->
+  <line x1="170" y1="380" x2="200" y2="110" stroke="#2b6cb0" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <text x="175" y="240" font-size="7" fill="#2b6cb0" transform="rotate(-55 175,240)">Encrypted Upload</text>
+  
+  <!-- Cloud to Consumers -->
+  <line x1="470" y1="200" x2="498" y2="200" stroke="#38a169" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <line x1="470" y1="300" x2="498" y2="300" stroke="#38a169" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <line x1="470" y1="390" x2="498" y2="390" stroke="#38a169" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  
+  <!-- Copyright -->
+  <text x="410" y="510" text-anchor="middle" font-size="7" fill="#a0aec0">Figure B1: Fit-for-Purpose Multi-Standard System Architecture</text>
+</svg>
+<p class="figure-caption">Figure B1. System architecture showing the Fit-for-Purpose multi-standard stack: data sources (left) are ingested through edge appliances into the cloud platform (center) employing openEHR for persistence, FHIR for exchange, and DICOM for waveforms/imaging. Consumers (right) access role-appropriate views. Applicable standards and regulations (far right) govern each layer.</p>
+</div>
+
+<!-- ==================== APPENDIX C: DATA FLOW ==================== -->
+<h2>C. Data Flow Diagram</h2>
+<div class="figure">
+<svg viewBox="0 0 780 340" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Arial, sans-serif">
+  <rect width="780" height="340" fill="#f7fafc" rx="8"/>
+  <text x="390" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#1a365d">ETL Data Flow: Proprietary EEG → Standards-Based Platform</text>
+  
+  <!-- Step boxes -->
+  <rect x="20" y="50" width="120" height="65" rx="6" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="1.5"/>
+  <text x="80" y="72" text-anchor="middle" font-size="9" font-weight="700" fill="#2c5282">1. INGEST</text>
+  <text x="80" y="86" text-anchor="middle" font-size="7" fill="#4a5568">Proprietary binary</text>
+  <text x="80" y="98" text-anchor="middle" font-size="7" fill="#4a5568">.EEG · .erd · EDF+</text>
+  <text x="80" y="110" text-anchor="middle" font-size="7" fill="#4a5568">DICOM · HL7v2</text>
+  
+  <rect x="170" y="50" width="120" height="65" rx="6" fill="#c6f6d5" stroke="#38a169" stroke-width="1.5"/>
+  <text x="230" y="72" text-anchor="middle" font-size="9" font-weight="700" fill="#22543d">2. PARSE</text>
+  <text x="230" y="86" text-anchor="middle" font-size="7" fill="#276749">Extract channels</text>
+  <text x="230" y="98" text-anchor="middle" font-size="7" fill="#276749">Sampling rates</text>
+  <text x="230" y="110" text-anchor="middle" font-size="7" fill="#276749">Annotations / Events</text>
+  
+  <rect x="320" y="50" width="120" height="65" rx="6" fill="#feebc8" stroke="#dd6b20" stroke-width="1.5"/>
+  <text x="380" y="72" text-anchor="middle" font-size="9" font-weight="700" fill="#7b341e">3. NORMALIZE</text>
+  <text x="380" y="86" text-anchor="middle" font-size="7" fill="#9c4221">Map to openEHR</text>
+  <text x="380" y="98" text-anchor="middle" font-size="7" fill="#9c4221">EEG Archetype</text>
+  <text x="380" y="110" text-anchor="middle" font-size="7" fill="#9c4221">SNOMED CT binding</text>
+  
+  <rect x="470" y="50" width="120" height="65" rx="6" fill="#e9d8fd" stroke="#805ad5" stroke-width="1.5"/>
+  <text x="530" y="72" text-anchor="middle" font-size="9" font-weight="700" fill="#44337a">4. EMIT</text>
+  <text x="530" y="86" text-anchor="middle" font-size="7" fill="#553c9a">DICOM Supp. 217</text>
+  <text x="530" y="98" text-anchor="middle" font-size="7" fill="#553c9a">FHIR Observation</text>
+  <text x="530" y="110" text-anchor="middle" font-size="7" fill="#553c9a">FHIR DiagnosticRpt</text>
+  
+  <rect x="620" y="50" width="140" height="65" rx="6" fill="#fed7d7" stroke="#e53e3e" stroke-width="1.5"/>
+  <text x="690" y="72" text-anchor="middle" font-size="9" font-weight="700" fill="#742a2a">5. VALIDATE</text>
+  <text x="690" y="86" text-anchor="middle" font-size="7" fill="#9b2c2c">Round-trip comparison</text>
+  <text x="690" y="98" text-anchor="middle" font-size="7" fill="#9b2c2c">MAE &lt;0.1µV</text>
+  <text x="690" y="110" text-anchor="middle" font-size="7" fill="#9b2c2c">Corr r &gt; 0.999</text>
+  
+  <!-- Arrows between steps -->
+  <line x1="140" y1="82" x2="168" y2="82" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+  <line x1="290" y1="82" x2="318" y2="82" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+  <line x1="440" y1="82" x2="468" y2="82" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+  <line x1="590" y1="82" x2="618" y2="82" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+  
+  <!-- Video compression parallel path -->
+  <rect x="170" y="145" width="270" height="55" rx="6" fill="#fefcbf" stroke="#d69e2e" stroke-width="1.5"/>
+  <text x="305" y="165" text-anchor="middle" font-size="9" font-weight="700" fill="#744210">Video Compression Pipeline (Parallel)</text>
+  <text x="305" y="180" text-anchor="middle" font-size="7.5" fill="#744210">Raw 1080p → H.265/HEVC (QP 22–30) → HLS Segments → CDN</text>
+  <text x="305" y="193" text-anchor="middle" font-size="7.5" fill="#744210">ROI: face region encoded at higher quality for semiology preservation</text>
+  
+  <!-- Consent path -->
+  <rect x="170" y="225" width="270" height="50" rx="6" fill="#fed7e2" stroke="#d53f8c" stroke-width="1.5"/>
+  <text x="305" y="245" text-anchor="middle" font-size="9" font-weight="700" fill="#702459">Consent Enforcement Layer</text>
+  <text x="305" y="260" text-anchor="middle" font-size="7.5" fill="#97266d">FHIR Consent → RBAC/ABAC Policy → Security Labels → Access Decision</text>
+  <text x="305" y="272" text-anchor="middle" font-size="7.5" fill="#97266d">Dynamic consent UI: per-data-type, per-purpose, per-actor granularity</text>
+  
+  <!-- Standards mapping table -->
+  <rect x="470" y="145" width="290" height="130" rx="6" fill="#fff" stroke="#cbd5e0" stroke-width="1"/>
+  <text x="615" y="163" text-anchor="middle" font-size="9" font-weight="700" fill="#1a365d">Standard ↔ Purpose Mapping</text>
+  <line x1="480" y1="170" x2="750" y2="170" stroke="#e2e8f0"/>
+  <text x="540" y="184" text-anchor="middle" font-size="7.5" font-weight="600" fill="#2c5282">openEHR</text>
+  <text x="680" y="184" text-anchor="middle" font-size="7.5" fill="#4a5568">Persistence (long-term clinical store)</text>
+  <text x="540" y="198" text-anchor="middle" font-size="7.5" font-weight="600" fill="#c53030">FHIR R4</text>
+  <text x="680" y="198" text-anchor="middle" font-size="7.5" fill="#4a5568">Exchange (APIs, EHR integration)</text>
+  <text x="540" y="212" text-anchor="middle" font-size="7.5" font-weight="600" fill="#dd6b20">DICOM</text>
+  <text x="680" y="212" text-anchor="middle" font-size="7.5" fill="#4a5568">Waveforms + Imaging (PACS integration)</text>
+  <text x="540" y="226" text-anchor="middle" font-size="7.5" font-weight="600" fill="#38a169">SNOMED CT</text>
+  <text x="680" y="226" text-anchor="middle" font-size="7.5" fill="#4a5568">Clinical terminology (concept-oriented)</text>
+  <text x="540" y="240" text-anchor="middle" font-size="7.5" font-weight="600" fill="#805ad5">EpSO/EPIO</text>
+  <text x="680" y="240" text-anchor="middle" font-size="7.5" fill="#4a5568">Epilepsy-specific ontology (gap-filling)</text>
+  <text x="540" y="254" text-anchor="middle" font-size="7.5" font-weight="600" fill="#2c5282">ICD-10/11</text>
+  <text x="680" y="254" text-anchor="middle" font-size="7.5" fill="#4a5568">Administrative coding (billing)</text>
+  <text x="540" y="268" text-anchor="middle" font-size="7.5" font-weight="600" fill="#2c5282">LOINC</text>
+  <text x="680" y="268" text-anchor="middle" font-size="7.5" fill="#4a5568">Observation identifiers (lab/diagnostic)</text>
+  
+  <defs><marker id="arrowGray" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4a5568"/></marker></defs>
+  
+  <text x="390" y="332" text-anchor="middle" font-size="7" fill="#a0aec0">Figure C1: ETL Data Flow showing parallel EEG normalization, video compression, and consent enforcement pipelines</text>
+</svg>
+<p class="figure-caption">Figure C1. Data flow from proprietary EEG format ingestion through parsing, normalization to openEHR archetypes, emission as DICOM/FHIR resources, and round-trip validation. Video compression and consent enforcement operate as parallel pipelines.</p>
+</div>
+
+<!-- ==================== APPENDIX D: TERMINOLOGY MAPPING ==================== -->
+<h2>D. Terminology Mapping Table — Cimino's Desiderata Assessment</h2>
+
+<table>
+<tr><th>Desideratum</th><th>SNOMED CT</th><th>ICD-10/11</th><th>LOINC</th><th>MeSH</th><th>EpSO</th></tr>
+<tr><td>1. Comprehensive content</td><td>✓ 370K+ concepts</td><td>~ Limited epilepsy</td><td>✓ Observations</td><td>~ Indexing scope</td><td>✓ Epilepsy domain</td></tr>
+<tr><td>2. Concept orientation</td><td>✓ Description logic</td><td>✗ Statistical classes</td><td>✓ 6-axis naming</td><td>~ Scope notes</td><td>✓ OWL2</td></tr>
+<tr><td>3. Concept permanence</td><td>✓ Inactivation model</td><td>✗ Codes retired</td><td>✓ Deprecation</td><td>~ Annual revisions</td><td>✓ OBO standard</td></tr>
+<tr><td>4. Nonsemantic IDs</td><td>✓ SCTIDs</td><td>✗ Hierarchical codes</td><td>✓ Numeric IDs</td><td>✗ Tree numbers</td><td>✓ URIs</td></tr>
+<tr><td>5. Polyhierarchy</td><td>✓ Full</td><td>✗ Mono (ICD-10) / ~ (ICD-11 foundation)</td><td>~ Limited</td><td>✓ Multi-tree</td><td>✓ OWL</td></tr>
+<tr><td>6. Formal definitions</td><td>~ 60-70% primitive</td><td>✗ Text only</td><td>✗ Naming convention</td><td>✗ Scope notes</td><td>✓ OWL axioms</td></tr>
+<tr><td>7. Reject NEC</td><td>✓ No NEC</td><td>✗ Pervasive NEC/NOS</td><td>✓</td><td>✓</td><td>✓</td></tr>
+<tr><td>8. Multiple granularities</td><td>✓</td><td>~ Code hierarchy</td><td>✓</td><td>✓ Explosion</td><td>✓</td></tr>
+<tr><td colspan="6" style="font-size:9pt;color:var(--muted);">✓ = Satisfies &nbsp; ~ = Partially satisfies &nbsp; ✗ = Does not satisfy &nbsp; (Based on Cimino, Methods Inf Med, 1998)</td></tr>
+</table>
+
+<!-- ==================== APPENDIX E: CONSENT WORKFLOW ==================== -->
+<h2>E. Consent Workflow Diagram</h2>
+<div class="figure">
+<svg viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Arial, sans-serif">
+  <rect width="720" height="280" fill="#f7fafc" rx="8"/>
+  <text x="360" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="#1a365d">Dynamic Consent Workflow (FHIR Consent Resource + PHIPA Compliance)</text>
+  
+  <!-- Patient -->
+  <circle cx="60" cy="100" r="25" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="2"/>
+  <text x="60" y="95" text-anchor="middle" font-size="8" font-weight="700" fill="#2c5282">Patient</text>
+  <text x="60" y="107" text-anchor="middle" font-size="7" fill="#4a5568">DRE</text>
+  
+  <!-- Consent UI -->
+  <rect x="120" y="65" width="130" height="70" rx="6" fill="#fed7e2" stroke="#d53f8c" stroke-width="1.5"/>
+  <text x="185" y="84" text-anchor="middle" font-size="9" font-weight="700" fill="#702459">Dynamic Consent UI</text>
+  <text x="185" y="98" text-anchor="middle" font-size="7" fill="#97266d">☑ EEG waveforms: Research</text>
+  <text x="185" y="110" text-anchor="middle" font-size="7" fill="#97266d">☑ Video (face blurred): Research</text>
+  <text x="185" y="122" text-anchor="middle" font-size="7" fill="#97266d">☐ Video (identifiable): Deny</text>
+  <text x="185" y="132" text-anchor="middle" font-size="7" fill="#97266d">☑ Imaging: Treatment only</text>
+  
+  <!-- FHIR Consent Resource -->
+  <rect x="280" y="60" width="140" height="80" rx="6" fill="#fed7d7" stroke="#e53e3e" stroke-width="1.5"/>
+  <text x="350" y="80" text-anchor="middle" font-size="9" font-weight="700" fill="#742a2a">FHIR Consent</text>
+  <text x="350" y="94" text-anchor="middle" font-size="7" fill="#9b2c2c">status: active</text>
+  <text x="350" y="106" text-anchor="middle" font-size="7" fill="#9b2c2c">scope: privacy | research</text>
+  <text x="350" y="118" text-anchor="middle" font-size="7" fill="#9b2c2c">policyRule: OPTIN</text>
+  <text x="350" y="130" text-anchor="middle" font-size="7" fill="#9b2c2c">provision[]: permit/deny</text>
+  
+  <!-- Policy Engine -->
+  <rect x="450" y="65" width="120" height="70" rx="6" fill="#e9d8fd" stroke="#805ad5" stroke-width="1.5"/>
+  <text x="510" y="84" text-anchor="middle" font-size="9" font-weight="700" fill="#44337a">Policy Engine</text>
+  <text x="510" y="98" text-anchor="middle" font-size="7" fill="#553c9a">RBAC + ABAC</text>
+  <text x="510" y="110" text-anchor="middle" font-size="7" fill="#553c9a">Purpose-of-Use check</text>
+  <text x="510" y="122" text-anchor="middle" font-size="7" fill="#553c9a">Security Labels</text>
+  <text x="510" y="132" text-anchor="middle" font-size="7" fill="#553c9a">IHE PCF profile</text>
+  
+  <!-- Access Decision -->
+  <rect x="600" y="72" width="100" height="56" rx="6" fill="#c6f6d5" stroke="#38a169" stroke-width="1.5"/>
+  <text x="650" y="94" text-anchor="middle" font-size="9" font-weight="700" fill="#22543d">Access</text>
+  <text x="650" y="108" text-anchor="middle" font-size="7" fill="#276749">PERMIT / DENY</text>
+  <text x="650" y="120" text-anchor="middle" font-size="7" fill="#276749">+ AuditEvent log</text>
+  
+  <!-- Arrows -->
+  <line x1="85" y1="100" x2="118" y2="100" stroke="#d53f8c" stroke-width="1.5" marker-end="url(#arrowPink)"/>
+  <line x1="250" y1="100" x2="278" y2="100" stroke="#e53e3e" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+  <line x1="420" y1="100" x2="448" y2="100" stroke="#805ad5" stroke-width="1.5" marker-end="url(#arrowPurple)"/>
+  <line x1="570" y1="100" x2="598" y2="100" stroke="#38a169" stroke-width="1.5" marker-end="url(#arrowGreen2)"/>
+  
+  <!-- PHIPA compliance notes -->
+  <rect x="120" y="160" width="480" height="100" rx="6" fill="#fff" stroke="#cbd5e0"/>
+  <text x="360" y="178" text-anchor="middle" font-size="9" font-weight="700" fill="#1a365d">PHIPA Compliance Mapping</text>
+  <text x="140" y="196" font-size="7.5" fill="#4a5568"><tspan font-weight="600">Circle of Care (ss. 20):</tspan> Implied consent for treating clinicians → auto-PERMIT for TREAT purpose</text>
+  <text x="140" y="210" font-size="7.5" fill="#4a5568"><tspan font-weight="600">Research (s. 44):</tspan> Express consent or REB-approved waiver + DSA → PERMIT for HRESCH purpose</text>
+  <text x="140" y="224" font-size="7.5" fill="#4a5568"><tspan font-weight="600">Lockbox (ss. 37-38):</tspan> Patient-directed restriction → DENY provision for specified data/actors</text>
+  <text x="140" y="238" font-size="7.5" fill="#4a5568"><tspan font-weight="600">Consent withdrawal:</tspan> status → "inactive" or new Consent with OPTOUT → immediate enforcement</text>
+  <text x="140" y="252" font-size="7.5" fill="#4a5568"><tspan font-weight="600">Audit (Bill 188):</tspan> All access events → FHIR AuditEvent → immutable log (ISO 18308 compliance)</text>
+  
+  <defs>
+    <marker id="arrowPink" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#d53f8c"/></marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#e53e3e"/></marker>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#805ad5"/></marker>
+    <marker id="arrowGreen2" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#38a169"/></marker>
+  </defs>
+  
+  <text x="360" y="275" text-anchor="middle" font-size="7" fill="#a0aec0">Figure E1: Dynamic consent workflow from patient UI through FHIR Consent resource, RBAC/ABAC policy engine, to access decision with PHIPA compliance mapping</text>
+</svg>
+<p class="figure-caption">Figure E1. Dynamic consent workflow showing patient-facing consent UI generating FHIR Consent resources with granular provisions, evaluated by the RBAC/ABAC policy engine against IHE PCF profile, producing audited access decisions. PHIPA compliance mapping shows how Ontario's circle-of-care, research disclosure, lockbox, and audit requirements are implemented.</p>
+</div>
+
+<!-- ==================== APPENDIX F: SAMPLE CONSENT FORM ==================== -->
+<h2>F. Sample Dynamic Consent Interface — Patient-Facing</h2>
+
+<div style="border:2px solid var(--accent); border-radius:8px; padding:20px; max-width:500px; margin:1em auto; font-family:'Inter',sans-serif; font-size:10pt;">
+  <h3 style="text-align:center; margin-top:0; color:var(--primary);">Your Data, Your Choice</h3>
+  <p style="text-align:center; font-size:9pt; color:var(--muted);">Neurodiagnostic Data Platform — Consent Preferences</p>
+  
+  <p style="font-size:9pt;">Please indicate how your health data may be used. You can change these preferences at any time by logging in or contacting your care team.</p>
+  
+  <table style="font-size:9pt; width:100%;">
+    <tr><th style="background:var(--accent);">Data Type</th><th style="background:var(--accent);">Treatment</th><th style="background:var(--accent);">Research<br>(De-identified)</th><th style="background:var(--accent);">Research<br>(Identifiable)</th></tr>
+    <tr><td>EEG Waveforms</td><td style="text-align:center;">✓ Required</td><td style="text-align:center;">☑ Opt-in</td><td style="text-align:center;">☐ Opt-in</td></tr>
+    <tr><td>Video (Face Visible)</td><td style="text-align:center;">✓ Required</td><td style="text-align:center;">☐ Opt-in</td><td style="text-align:center;">☐ Opt-in</td></tr>
+    <tr><td>Video (Face De-identified)</td><td style="text-align:center;">N/A</td><td style="text-align:center;">☑ Opt-in</td><td style="text-align:center;">N/A</td></tr>
+    <tr><td>Brain Imaging (MRI/PET)</td><td style="text-align:center;">✓ Required</td><td style="text-align:center;">☑ Opt-in</td><td style="text-align:center;">☐ Opt-in</td></tr>
+    <tr><td>Device Data (RNS/VNS/DBS)</td><td style="text-align:center;">✓ Required</td><td style="text-align:center;">☑ Opt-in</td><td style="text-align:center;">☐ Opt-in</td></tr>
+    <tr><td>Clinical Notes</td><td style="text-align:center;">✓ Required</td><td style="text-align:center;">☐ Opt-in</td><td style="text-align:center;">☐ Opt-in</td></tr>
+  </table>
+  
+  <p style="font-size:8.5pt; margin-top:12px;"><strong>Duration of consent:</strong> ☑ Until I withdraw &nbsp; ☐ 5 years &nbsp; ☐ 1 year</p>
+  <p style="font-size:8.5pt;"><strong>Re-contact preference:</strong> ☑ Yes, contact me about new research studies &nbsp; ☐ No</p>
+  <p style="font-size:8pt; color:var(--muted); margin-top:12px;">Your treating clinicians always have access to your data for your care (PHIPA "circle of care"). Research access requires additional approval by a Research Ethics Board. You may withdraw consent at any time without affecting your care. All access to your data is logged and auditable.</p>
+  
+  <div style="text-align:center; margin-top:15px; padding:8px; background:var(--light); border-radius:4px;">
+    <span style="font-size:9pt; color:var(--muted);">[Digital Signature] &nbsp; Date: ____________</span>
+  </div>
+</div>
+<p class="figure-caption">Figure F1. Sample dynamic consent interface allowing patients to set granular data-sharing preferences by data type and purpose, implementing FHIR Consent provisions with PHIPA compliance. Treatment access is mandatory within the circle of care; research access is separately consented per data type.</p>
+
+<div style="margin-top:3em; padding-top:1em; border-top:2px solid var(--border); text-align:center; font-family:'Inter',sans-serif; font-size:9pt; color:var(--muted);">
+  <p>— End of Grant Proposal —</p>
+  <p>Prepared February 2026 | Confidential</p>
+</div>
+
+</body>
+</html>
